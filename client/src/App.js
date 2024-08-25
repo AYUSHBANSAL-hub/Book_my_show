@@ -15,13 +15,6 @@ import Menubar from "./components/menubar/Menubar";
 import Footer from "./components/footer/Footer";
 import Login from "./components/Login/Login";
 
-// Firebase initialization
-const firebaseConfig = {
-  // Your Firebase config here
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 function App() {
   return (
