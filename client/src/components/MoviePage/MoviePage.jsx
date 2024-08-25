@@ -235,12 +235,12 @@ export function MoviePage() {
       {/*------------------- Discriptions ----------------------------------*/}
       <div className="outBox">
         <div className="enjoyBox">
-          Enjoy Online Ticket Booking for Movies in Bengaluru With BookMyShow
+          Enjoy Online Ticket Booking for Movies in Bengaluru With CineSphere
         </div>
         <div className="paraPlanning">
           If you are planning for movie ticket bookings for the latest movies in
           Prayagraj (Allahabad), don't look any Mother. Now it is easy to get on
-          with =line ticket booking with BookMyShow. Your one-stop solution for
+          with =line ticket booking with cinesphere. Your one-stop solution for
           movies to watch this weekend Everyone enjoys watching their favourite
           movies on the big screen, and the excitement of watching them with
           friends is unparalleled. If you have been eagerly waiting for a movie
@@ -308,7 +308,7 @@ export function MoviePage() {
             movie.watching experience together There are many big releases in Me
             pipeline, and it is expected Mat these movies will have Me perfect
             casting and direction Get ready for upcoming movies in theatres
-            Bon,. anymore and book your movie tickets from BookMyShow today at
+            Bon,. anymore and book your movie tickets from CineSphere today at
             the best price! Your access to your favourite movie in Prayagraj
             (Mlahnhad) is only a click away!
           </div>

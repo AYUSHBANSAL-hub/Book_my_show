@@ -8,7 +8,7 @@ export default function () {
           <p className="footer-heading">List Your Show</p>
           <p className="footer-sub">
             Got a show, event, activity or a great experience? Partner with us &
-            get listed on BookMyShow
+            get listed on cinesphere
           </p>
           <div className="grow"></div>
           <button className="btn btn-danger btn-red">Contact Today</button>

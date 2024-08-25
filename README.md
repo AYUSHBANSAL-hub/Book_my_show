@@ -2,9 +2,9 @@
 ![Logo](https://github.com/sumit-krk/name/blob/master/Book_my_shoe.PNG?raw=true)
 
 
-# Bookmyshow clone
+# CineSphere clone
 
-BookMyShow offers showtimes, movie tickets, reviews, trailers, concert tickets and events across india.
+CineSphere offers showtimes, movie tickets, reviews, trailers, concert tickets and events across india.
 
 
 ## Go to project directory:-

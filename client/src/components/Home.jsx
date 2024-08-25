@@ -35,7 +35,6 @@ export default function () {
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMmU5OGU3MmNjYmMyZjY1NTNmNDkxOWJmNmI5ZGM1OSIsIm5iZiI6MTcyNDU2OTI3NC45NjUyODMsInN1YiI6IjYxMWJhNTlkODdmM2YyMDA0NTRlMTJlMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QkhXZtfhO8Je8G2Thmk_TusUai29867PQkL9-Dfm_NY",
         },
       };
-
       try {
         const response = await fetch(
           "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
