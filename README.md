@@ -48,27 +48,3 @@ Run Backend side
 ```bash
   npm run start
 ```
-## Screenshots :-
-- Landing Page
-
-![Logo](https://user-images.githubusercontent.com/86410255/146665894-5e53bbf5-2bbb-48f2-87bb-bb72acac75d1.png)
-
-
-- Movie Page
-
-![Logo](https://user-images.githubusercontent.com/86410255/146665843-3ffa9455-4953-42fa-a646-8c8e4eb615a7.png)
-
-
-
-- Movie Description Page
-
-![Logo](https://user-images.githubusercontent.com/86410255/146665846-e43c661b-7c23-452f-90c6-4e8ef04fe0bb.png)
-
-
-- Slot Booking
-
-![Logo](https://user-images.githubusercontent.com/86410255/146665854-32786d5f-07c6-4147-ab9a-c48c400a2dd4.png)
-
-- Select Seat
-
-![Logo](https://user-images.githubusercontent.com/86410255/146665859-68fe4d9a-2ae0-4f38-b1bf-4b46fdff356e.png)
