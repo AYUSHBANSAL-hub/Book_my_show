@@ -5,7 +5,7 @@ import "../../style/slotbooking.css";
 import Footer from "../footer/Footer";
 import { Selectseat } from "../Seat/Selectseat";
 import { Terms } from "../Seat/Terms";
-import { theaters as mockTheaters } from "../../mockData";
+import { theaters as mockTheaters } from "../../mockData.js";
 
 export const Slotbooking = () => {
   const [movie, setMovie] = useState([]);

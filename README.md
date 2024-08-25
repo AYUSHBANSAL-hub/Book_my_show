@@ -2,7 +2,6 @@
 
 CineSphere offers showtimes, movie tickets, reviews, trailers, concert tickets and events across india.
 
-
 ## Go to project directory:-
 ## Tech Stack :-
 - HTML

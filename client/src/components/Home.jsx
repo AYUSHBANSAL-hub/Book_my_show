@@ -11,7 +11,6 @@ import Navbar from "./navbar/Navbar";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { movies as mockMovies } from "../mockData.js";
 import { Link } from "react-router-dom";
 
 export default function () {
