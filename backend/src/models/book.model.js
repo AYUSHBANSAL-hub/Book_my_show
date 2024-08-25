@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-
-
 const bookSchema = new mongoose.Schema({
     email:{type:String},
     name:{type:String},

@@ -4,7 +4,7 @@ const cors = require("cors");
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-app.listen(5000, async () => {
+app.listen(6000, async () => {
   await connect();
-  console.log("Listening on the port 5000");
+  console.log("Listening on the port 6000");
 });

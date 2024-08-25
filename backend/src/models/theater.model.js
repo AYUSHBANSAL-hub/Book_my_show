@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
 
-
-
 const theaterSchema = new mongoose.Schema({
     name:{type:String},
     screenType:{type:String},

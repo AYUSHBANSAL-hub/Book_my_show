@@ -5,160 +5,120 @@ import "../../style/slotbooking.css";
 import Footer from "../footer/Footer";
 import { Selectseat } from "../Seat/Selectseat";
 import { Terms } from "../Seat/Terms";
+import { theaters as mockTheaters } from "../../mockData";
 
 export const Slotbooking = () => {
   const [movie, setMovie] = useState([]);
   const [timearr, setTimearr] = useState([]);
   const [slottime, setSlottime] = useState([]);
-  const { id,bookingId } = useParams();
-  const [playingTheaters,setPlayingTheaters]=useState([]);
-  const [selectedTimeSlot,setSelectedTimeSlot]=useState("");
-  const [selectedTheater,setSelectedTheater]=useState("");
-  const [filtered,setFiltered]=useState([]);
-  const [selectedSeats,setSelectedSeats]=useState(0);
-  var serverData=[];
+  const { id, bookingId } = useParams();
+  const [playingTheaters, setPlayingTheaters] = useState([]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [selectedTheater, setSelectedTheater] = useState("");
+  const [filtered, setFiltered] = useState([]);
+  const [selectedSeats, setSelectedSeats] = useState(0);
+  var serverData = [];
 
-
-
-  useEffect(()=>{
+  useEffect(() => {
     getTheaters(id);
-  },[]);
+  }, []);
 
-  async function updateBooking(seats)
-  {
+  async function updateBooking(seats) {
+    let resp = await axios.patch(
+      `http://localhost:5000/book/update/${bookingId}`,
+      {
+        howmanySeats: seats,
+        theater: selectedTheater,
+        timeOfShow: selectedTimeSlot,
+        dateOfBooking: new Date().getUTCDate(),
+      }
+    );
 
-      let resp=await axios.patch(`http://localhost:5000/book/update/${bookingId}`,{
-          howmanySeats:seats,
-          theater:selectedTheater,
-          timeOfShow:selectedTimeSlot,
-          dateOfBooking:new Date().getUTCDate()
-      });
-
-      console.log("After updating seats Data",resp);
-
-
-
+    console.log("After updating seats Data", resp);
   }
 
-  async function getTheaters(movieId)
-  { 
-
-      let response = await axios.get("http://localhost:5000/theater/getTheaters/"+movieId);
-
-      //console.log("movie is playing in theaters",response.data);
-      setPlayingTheaters(response.data);      
-
-
+  async function getTheaters(movieId) {
+    setPlayingTheaters(mockTheaters); // Replace API call with mock data
   }
 
-  console.log("Current Booking id",bookingId);
- console.log("id",id)
+  // async function getTheaters(movieId) {
+  //   let response = await axios.get(
+  //     "http://localhost:5000/theater/getTheaters/" + movieId
+  //   );
+
+  //   //console.log("movie is playing in theaters",response.data);
+  //   setPlayingTheaters(response.data);
+  // }
+
+  console.log("Current Booking id", bookingId);
+  console.log("id", id);
   const handleSortbyTime = async (e) => {
     // console.log(e.target.value);
     await getTheaters(id);
     console.log(e.target.value);
     switch (e.target.value) {
       case "all":
-        
         await getTheaters(id);
         break;
 
       case "morning":
         await getTheaters(id);
 
-      
-          let timingsData=playingTheaters.map((obj)=>{
+        let timingsData = playingTheaters.map((obj) => {
+          obj.showTimings.forEach((time, index) => {
+            obj.showTimings[index] = Number(time.split(":")[0]);
+          });
 
-            obj.showTimings.forEach((time,index)=>{
-                
-                
-                 obj.showTimings[index]=Number(time.split(":")[0])
-                 
-                                
-            })
+          return obj;
+        });
 
-            return obj;
-            
-            
- 
-        })
-
-
-        setPlayingTheaters(timingsData.filter((obj)=>{
-
-
-            obj.showTimings=obj.showTimings.filter((el)=>{
-              if(el > 9 && el <12)
-                return true;
-            })
-            
+        setPlayingTheaters(
+          timingsData.filter((obj) => {
+            obj.showTimings = obj.showTimings.filter((el) => {
+              if (el > 9 && el < 12) return true;
+            });
 
             return true;
-        }));
+          })
+        );
 
-        
-
-      
-         
         /* var sorted_time_arr = slottime.filter((item) => {
           if (item.time > 6 && item.time < 12) {
             return true;
           }
         }) */
         //setTimearr(filter);
-        
 
         break;
 
-      
       case "evening":
-        
-//       getTheaters(id);
+        //       getTheaters(id);
 
-        
-      console.log("Getting ServerData",playingTheaters);        
-        
+        console.log("Getting ServerData", playingTheaters);
 
-          let timingsData3=playingTheaters.map((obj)=>{
+        let timingsData3 = playingTheaters.map((obj) => {
+          obj.showTimings.forEach((time, index) => {
+            console.log("Time", time);
+            if (typeof time === String)
+              obj.showTimings[index] = Number(time.split(":")[0]);
+          });
 
-            obj.showTimings.forEach((time,index)=>{
-                
+          return obj;
+        });
 
-              console.log("Time",time);
-                if(typeof(time)===String)
-                 obj.showTimings[index]=Number(time.split(":")[0])
-                 
-                 
-                                
-            })
-
-            return obj;
-            
-            
- 
-        })
-
-
-        setPlayingTheaters(timingsData3.filter((obj)=>{
-
-
-            obj.showTimings=obj.showTimings.filter((el)=>{
-              if(el >= 12 && el <=21)
-                return true;
-            })
-            
+        setPlayingTheaters(
+          timingsData3.filter((obj) => {
+            obj.showTimings = obj.showTimings.filter((el) => {
+              if (el >= 12 && el <= 21) return true;
+            });
 
             return true;
-        }));
+          })
+        );
 
-         
-        
-
-        
-        
         break;
       default:
-      //  await getTheaters(id);
+        //  await getTheaters(id);
         break;
     }
   };
@@ -167,9 +127,6 @@ export const Slotbooking = () => {
     getData();
     //slotFetching();
     getTheaters(id);
-    
-
-
   }, []);
 
   //---------getting single movie data-------------//
@@ -180,7 +137,7 @@ export const Slotbooking = () => {
   //-----------fetching the theatres--------------//
   const slotFetching = async () => {
     let { data } = await axios.get("http://localhost:5000/theater");
-    console.log("theatre",data)
+    console.log("theatre", data);
   };
   return (
     <div className="container-fluid">
@@ -227,9 +184,12 @@ export const Slotbooking = () => {
             <option>Rs 301-350</option>
             <option>Above Rs 350</option>
           </select>
-          <select onChange={handleSortbyTime} onClick={(e)=>(async ()=>{
-            await getTheaters(id);
-          })}>
+          <select
+            onChange={handleSortbyTime}
+            onClick={(e) => async () => {
+              await getTheaters(id);
+            }}
+          >
             <option>Filter by Timings</option>
             <option value="all">All Available</option>
             <option value="morning">Morning 12.00-11.59am</option>
@@ -268,7 +228,7 @@ export const Slotbooking = () => {
         </div>
         <hr className="mt-2" />
       </div>
-      { playingTheaters.map((theater) => (
+      {playingTheaters.map((theater) => (
         <div className="row box-4 me-2">
           <div className="col-4">
             <img src={"blankheart.png"} alt="" />
@@ -284,11 +244,9 @@ export const Slotbooking = () => {
             {theater.showTimings.map((item) => (
               //    <button className="btn  m-3 slot-time" onClick={handleCount}>{time}AM</button>
               <button
-
-                onClick={()=>{
+                onClick={() => {
                   setSelectedTimeSlot(item);
                   setSelectedTheater(theater._id);
-                  
                 }}
                 type="button"
                 className="btn  m-3 slot-time"
@@ -332,12 +290,15 @@ export const Slotbooking = () => {
         <div class="modal-dialog">
           <div class="modal-content">
             {" "}
-            <Selectseat handleSelection={setSelectedSeats}  update={updateBooking} />
+            <Selectseat
+              handleSelection={setSelectedSeats}
+              update={updateBooking}
+            />
           </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };
